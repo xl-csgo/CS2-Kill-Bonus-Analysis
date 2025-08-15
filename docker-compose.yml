@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  cs2-analysis:
+    build: .
+    container_name: cs2-kill-bonus-analysis
+    volumes:
+      # Mount the local demos folder to the container
+      - ./demos:/app/demos:ro
+      # Mount output directories to persist results
+      - ./bonus_analysis:/app/bonus_analysis
+      - ./equipment_analysis:/app/equipment_analysis
+      - ./kills_analysis:/app/kills_analysis
+      - ./utility_analysis:/app/utility_analysis
+      - ./combined_analysis:/app/combined_analysis
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Remove the container after it finishes
+    # Uncomment if you want the container to persist
+    # restart: "no"
